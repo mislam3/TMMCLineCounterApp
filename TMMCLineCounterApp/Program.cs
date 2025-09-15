@@ -6,6 +6,12 @@ namespace TMMCLineCounterApp
 {
     class Program
     {
+        static bool DetectBlack(Color clr, int threshold = 32)
+        {
+            return clr.R < threshold && clr.G < threshold && clr.B < threshold;
+        }
+
+
         static int Main(string[] args)
         {
             try
