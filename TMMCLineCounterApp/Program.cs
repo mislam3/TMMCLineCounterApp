@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace TMMCLineCounterApp
 {
@@ -13,7 +14,14 @@ namespace TMMCLineCounterApp
             }
 
             string imgPath = args[0];
-            Console.WriteLine($"Argument received: {imgPath}");
+
+            if (!File.Exists(imgPath))
+            {
+                Console.WriteLine($"Image File not found at: {imgPath}");
+                return 1;
+            }
+
+            Console.WriteLine($"Image File exists at: {imgPath}");
             return 0;
         }
     }
