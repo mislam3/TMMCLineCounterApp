@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\siamm\\Source\\Repos\\TMMCLineCounterApp\\TMMCLineCounterApp\\TMMCLineCounterApp.csproj": {}
+    "C:\\Users\\siamm\\source\\repos\\TMMCLineCounterApp\\TMMCLineCounterApp\\TMMCLineCounterApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\siamm\\Source\\Repos\\TMMCLineCounterApp\\TMMCLineCounterApp\\TMMCLineCounterApp.csproj": {
+    "C:\\Users\\siamm\\source\\repos\\TMMCLineCounterApp\\TMMCLineCounterApp\\TMMCLineCounterApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\siamm\\Source\\Repos\\TMMCLineCounterApp\\TMMCLineCounterApp\\TMMCLineCounterApp.csproj",
+        "projectUniqueName": "C:\\Users\\siamm\\source\\repos\\TMMCLineCounterApp\\TMMCLineCounterApp\\TMMCLineCounterApp.csproj",
         "projectName": "TMMCLineCounterApp",
-        "projectPath": "C:\\Users\\siamm\\Source\\Repos\\TMMCLineCounterApp\\TMMCLineCounterApp\\TMMCLineCounterApp.csproj",
+        "projectPath": "C:\\Users\\siamm\\source\\repos\\TMMCLineCounterApp\\TMMCLineCounterApp\\TMMCLineCounterApp.csproj",
         "packagesPath": "C:\\Users\\siamm\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\siamm\\Source\\Repos\\TMMCLineCounterApp\\TMMCLineCounterApp\\obj\\",
+        "outputPath": "C:\\Users\\siamm\\source\\repos\\TMMCLineCounterApp\\TMMCLineCounterApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
