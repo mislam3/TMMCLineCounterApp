@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Drawing;
 
 namespace TMMCLineCounterApp
 {
@@ -7,22 +8,35 @@ namespace TMMCLineCounterApp
     {
         static int Main(string[] args)
         {
-            if (args.Length != 1)
+            try
             {
-                Console.WriteLine("Invalid input. Please Enter: TMMCLineCounterApp.exe <image-path>");
-                return 1;
+                if (args.Length != 1)
+                {
+                    Console.WriteLine("Invalid input. Please Enter: TMMCLineCounterApp.exe <image-path>");
+                    return 1;
+                }
+
+                string imgPath = args[0];
+
+                if (!File.Exists(imgPath))
+                {
+                    Console.WriteLine($"Image File not found at: {imgPath}");
+                    return 1;
+                }
+
+                using (Bitmap bmp = new Bitmap(imgPath))
+                {
+                    Console.WriteLine($"Loaded image fmt: {bmp.Width} x {bmp.Height}");
+                }
+                return 0;
             }
 
-            string imgPath = args[0];
-
-            if (!File.Exists(imgPath))
+            catch (Exception e) 
             {
-                Console.WriteLine($"Image File not found at: {imgPath}");
-                return 1;
+                Console.WriteLine($"Exception: {e.Message}");
+                return 2;
             }
 
-            Console.WriteLine($"Image File exists at: {imgPath}");
-            return 0;
         }
     }
 }
