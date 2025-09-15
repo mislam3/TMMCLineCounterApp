@@ -11,6 +11,57 @@ namespace TMMCLineCounterApp
             return clr.R < threshold && clr.G < threshold && clr.B < threshold;
         }
 
+        static int CountLines(string imgPath)
+        {
+            using (Bitmap bmp = new Bitmap(imgPath))
+            {
+                int height = bmp.Height;
+                int width = bmp.Width;
+
+                const double minBlackRatio = 0.02;
+                const int threshold = 32;
+                bool[] adjColumn = new bool[width];              
+
+                for (int x = 0; x < width; x++)
+                {
+                    int topHalfBlack = 0; 
+                    int bottomHalfBlack = 0;
+                    int blackTotal = 0;
+
+                    for (int y = 0; y < height; y++)
+                    {
+                        Color clr = bmp.GetPixel(x, y);
+                        if (DetectBlack(clr, threshold))
+                        {
+                            blackTotal++;
+
+                            if (y < height / 2)
+                            {
+                                topHalfBlack++;
+                            }
+                            else 
+                            {
+                                bottomHalfBlack++;
+                            }
+                        }
+                    }
+
+                    double blackRatio = (double)blackTotal / height;
+                    adjColumn[x] = (blackRatio >= minBlackRatio && topHalfBlack > 0 && bottomHalfBlack > 0);
+                }
+
+                int verticalLines = 0;
+                for (int x = 0; x < width; x++)
+                {
+                    if ((x == 0 || !adjColumn[x - 1]) && adjColumn[x])
+                    {
+                        verticalLines++;
+                    }
+                }
+                return verticalLines;
+            }
+        }
+
 
         static int Main(string[] args)
         {
