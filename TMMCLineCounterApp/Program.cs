@@ -23,13 +23,16 @@ namespace TMMCLineCounterApp
                 int width = bmp.Width;
 
                 // Determining if column is part of a line
-                // Column : atleast 2% black pixels ; Black threshold - pixel is black if all channels < 32 ; ignores outlier dots
+                // Column marked as line if : black pixels present in top and bottom halves
+                // At least 2% black pixels; % of black pixel defined to reject noise -> ignores outlier dots
+                // Black threshold - pixel is black if all channels < 32 ; 
                 const double minBlackRatio = 0.02;
                 const int threshold = 32;
                 bool[] adjColumn = new bool[width];
 
-                // looping through pixels x,y 
-                // Counting black pixels separately in top and bottom halves; tracking blackTotal for ratio check
+                // Looping through pixels x,y 
+                // Counting black pixels separately in top and bottom halves -> ensuring it spans full height
+                // Tracking blackTotal for ratio check
                 for (int x = 0; x < width; x++)
                 {
                     int topHalfBlack = 0;
@@ -58,8 +61,9 @@ namespace TMMCLineCounterApp
                     adjColumn[x] = (blackRatio >= minBlackRatio && topHalfBlack > 0 && bottomHalfBlack > 0);
                 }
 
-                // Counting contiguous lines
-                // Contiguous runs of Adjacent columns -> one line
+                // Algorithm counting contiguous black lines
+                // Contiguous runs of Adjacent columns -> one line;
+                // Turns raw pixel data into line counts; Tolerates thick lines by adj column merging; One pass over image -> efficient
                 int verticalLines = 0;
                 for (int x = 0; x < width; x++)
                 {
